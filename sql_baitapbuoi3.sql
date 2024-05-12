@@ -54,6 +54,15 @@ order by author_id asc;
 SELECT part,assembly_step FROM parts_assembly
 where finish_date is NULL;
 
+--EX14
+select * from lyft_drivers
+where yearly_salary<=30000 or yearly_salary >=70000
+order by yearly_salary asc;
+
+--EX15
+select advertising_channel from uber_advertising
+where year=2019 and money_spent >=100000;
+
 
 
 
