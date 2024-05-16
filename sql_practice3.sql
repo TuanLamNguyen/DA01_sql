@@ -42,6 +42,38 @@ from Tweets
 where length(content) >15
 
 --ex7
+SELECT activity_date as day, COUNT(DISTINCT user_id) as active_users FROM activity
+GROUP BY activity_date
+HAVING activity_date BETWEEN '2019-06-27' AND '2019-07-28';
+
+--ex8
+SELECT 
+    EXTRACT(MONTH FROM joining_date) AS month,
+    COUNT(id) AS number_employers
+FROM 
+    employees
+WHERE 
+    EXTRACT(YEAR FROM joining_date) = 2022
+    AND EXTRACT(MONTH FROM joining_date) BETWEEN 1 AND 7
+GROUP BY 
+    EXTRACT(MONTH FROM joining_date);
+
+--ex9
+select first_name,
+position('a' in first_name)
+from worker
+where first_name ='Amitah'
+
+--ex10
+SELECT 
+    country, winery,
+    substring(title, length(winery) + 2, 4) AS year
+FROM winemag_p2
+    where country='Macedonia'
+
+
+
+
 
 
 
