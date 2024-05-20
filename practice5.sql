@@ -78,6 +78,101 @@ ORDER BY page_id ASC;
 
 
 
+--bài test
+
+--Question 1
+select distinct replacement_cost  from film
+order by replacement_cost asc
+limit 1;
+
+--Question 2
+SELECT 
+CASE
+    WHEN replacement_cost BETWEEN 9.99 AND 19.99 THEN 'low'
+    WHEN replacement_cost BETWEEN 20.00 AND 24.99 THEN 'medium'
+    WHEN replacement_cost BETWEEN 25.00 AND 29.99 THEN 'high'
+END AS chiphi,
+COUNT(replacement_cost) AS count_replacement_cost
+FROM film
+GROUP BY 
+CASE
+    WHEN replacement_cost BETWEEN 9.99 AND 19.99 THEN 'low'
+    WHEN replacement_cost BETWEEN 20.00 AND 24.99 THEN 'medium'
+    WHEN replacement_cost BETWEEN 25.00 AND 29.99 THEN 'high'
+END;
+
+--question 3
+
+select a.title,a.length,c.name
+from public.film as a 
+inner join public.film_category as b on a.film_id=b.film_id
+inner join public.category as c on c.category_id=b.category_id
+	where c.name in ('Drama','Sports' )
+order by a.length desc;
+
+
+--question 4
+
+select c.name, count(a.title) as soluong
+from public.film as a 
+inner join public.film_category as b on a.film_id=b.film_id
+inner join public.category as c on c.category_id=b.category_id
+	group by c.name	
+order by soluong desc;
+
+--question 5
+
+select a.first_name || ' ' || a.last_name as ho_ten, count(b.film_id) as sophim
+	from public.actor as a
+inner join public.film_actor as b on a.actor_id=b.actor_id
+group by a.first_name || ' ' || a.last_name
+order by sophim desc;
+
+--question 6
+
+select count(*) from public.customer as c 
+	right join public.address as a on c.address_id=a.address_id
+where  c.address_id is null;
+
+--question 7
+select c.city, sum(p.amount) as total
+	from public.city as c
+inner join public.address as a on a.city_id=c.city_id
+inner join public.staff as s on s.address_id=a.address_id
+inner join public.payment as p on p.staff_id=s.staff_id
+group by c.city
+order by total desc;
+
+--question 8
+select co.country || ' '|| c.city as thanhpho_datnuoc, sum(p.amount) as total
+	from public.city as c
+inner join public.address as a on a.city_id=c.city_id
+inner join public.staff as s on s.address_id=a.address_id
+inner join public.payment as p on p.staff_id=s.staff_id
+inner join public.country as co on co.country_id=c.country_id
+group by co.country || ' '|| c.city
+order by total desc;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
