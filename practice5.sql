@@ -65,20 +65,7 @@ ORDER BY page_id ASC;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
---bài test
+--bài test-------------------------------------------------------------
 
 --Question 1
 select distinct replacement_cost  from film
