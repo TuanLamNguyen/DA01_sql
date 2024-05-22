@@ -105,7 +105,7 @@ from (select count(job_id) as "dup" from job_listings
 group by company_id, title, description) as "titdes_dup"
 where titdes_dup.dup > 1
 
---
+--ex11
 (with cte as
 (select mr.user_id, name 
   from Users u, MovieRating mr
@@ -128,7 +128,7 @@ group by title
 order by avg(rating) desc, title asc
 limit 1)
 
---ex11
+--ex12
 
 WITH CTE AS(
 SELECT requester_id , accepter_id
